@@ -10,6 +10,7 @@ import { calculatePotOdds } from '@/core/poker/pot-odds/pot-odds';
 import { CATEGORY_LABELS, Card, Precision, STREET_COMMUNITY_COUNT, Street } from '@/core/poker/models/poker.models';
 import { CalculatorStateService } from '@/features/calculator/state/calculator-state.service';
 import { ZardAccordionImports } from '@/shared/components/accordion/accordion.imports';
+import { ZardAvatarComponent } from '@/shared/components/avatar/avatar.component';
 import { ZardBadgeComponent } from '@/shared/components/badge/badge.component';
 import { ZardButtonComponent } from '@/shared/components/button/button.component';
 import { ZardCardImports } from '@/shared/components/card/card.imports';
@@ -39,7 +40,7 @@ interface ExampleHand {
 
 @Component({
   selector: 'app-root',
-  imports: [DecimalPipe, NgIcon, ZardAccordionImports, ZardBadgeComponent, ZardButtonComponent, ZardCardImports, ZardFieldImports, ZardInputComponent, ZardProgressComponent, ZardSelectImports, ZardSeparatorComponent, ZardSonnerComponent, ZardTabsImports, CardSelectorComponent, PlayingCardComponent],
+  imports: [DecimalPipe, NgIcon, ZardAccordionImports, ZardAvatarComponent, ZardBadgeComponent, ZardButtonComponent, ZardCardImports, ZardFieldImports, ZardInputComponent, ZardProgressComponent, ZardSelectImports, ZardSeparatorComponent, ZardSonnerComponent, ZardTabsImports, CardSelectorComponent, PlayingCardComponent],
   templateUrl: './app.html',
   styleUrl: './app.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
