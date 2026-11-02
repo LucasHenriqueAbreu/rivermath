@@ -1,59 +1,104 @@
-# Rivermath
+# RiverMath
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.2.4.
+**Matemática por trás de cada mão.**
 
-## Development server
+RiverMath é uma calculadora e simulador open-source para estudar probabilidades, equidade, combinações e pot odds no Texas Hold'em. A aplicação é gratuita, estática e roda os cálculos no navegador.
 
-To start a local development server, run:
+## Funcionalidades
 
-```bash
-ng serve
-```
+- Seletor visual de cartas com as 52 cartas do baralho e prevenção de duplicatas.
+- Fluxo pré-flop, flop, turn e river.
+- Avaliador da melhor mão de cinco cartas entre até sete cartas.
+- Monte Carlo com modos Rápido (2.500), Padrão (10.000) e Preciso (50.000).
+- Vitória exclusiva, empate, derrota, equidade, distribuição da sua mão e categorias que venceram você.
+- Pot odds com comparação educativa contra a equidade estimada.
+- Mãos de exemplo, ranking, regras e conceitos matemáticos.
+- Dark mode, layout responsivo e suporte a teclado nos controles principais.
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## Tecnologias
 
-## Code scaffolding
+- Angular 22 standalone + TypeScript strict.
+- Angular Signals e Web Worker para as simulações.
+- Tailwind CSS v4.
+- Zard UI como design system, instalado pelo CLI/MCP oficial.
+- Lucide via `@ng-icons/lucide`.
+- Vitest via builder de testes do Angular.
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Requisitos
 
-```bash
-ng generate component component-name
-```
+- Node.js 22 LTS ou superior compatível com Angular 22.
+- npm.
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+## Desenvolvimento local
 
 ```bash
-ng test
+npm ci
+npm start
 ```
 
-## Running end-to-end tests
+Abra `http://localhost:4200/`.
 
-For end-to-end (e2e) testing, run:
+## Testes
 
 ```bash
-ng e2e
+npm test -- --watch=false
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+Os testes cobrem o baralho, remoção de cartas, avaliação das dez categorias, kickers, ás baixo, melhores cinco cartas, empates, equidade proporcional, distribuição normalizada, aleatoriedade injetável e pot odds.
 
-## Additional Resources
+## Build
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+```bash
+npm run build
+```
+
+Os arquivos são gerados em `dist/rivermath/browser`.
+
+## Deploy no GitHub Pages
+
+O workflow `.github/workflows/deploy.yml` executa testes, compila com `base-href` `/rivermath/`, cria o fallback `404.html` para navegação estática e publica com as Actions oficiais do GitHub Pages.
+
+No repositório do GitHub:
+
+1. Abra **Settings → Pages**.
+2. Em **Build and deployment**, selecione **GitHub Actions**.
+3. Faça push na branch `main` ou execute o workflow manualmente.
+
+O endereço esperado é `https://USUARIO.github.io/rivermath/`. Se o repositório usar outro nome, atualize o `base-href` do workflow. Para domínio personalizado, configure o domínio no GitHub Pages e remova o caminho de projeto do `base-href`.
+
+## Arquitetura
+
+```text
+src/app/
+  core/poker/
+    deck/          baralho, criação, remoção e embaralhamento
+    evaluator/     avaliação e comparação de mãos
+    probability/   insights de outs e completamento
+    pot-odds/      cálculo independente de pot odds
+    simulation/    motor Monte Carlo
+    workers/       entrada do Web Worker
+  features/calculator/
+    components/    PlayingCard e seletor visual
+    state/         estado Signals e ciclo de vida do worker
+  shared/components/ componentes instalados do Zard UI
+```
+
+O motor matemático não depende de Angular ou de componentes visuais. O simulador remove as cartas conhecidas, distribui cartas sem reposição, avalia a melhor mão de cada jogador e divide a contribuição de equidade em empates. Royal flush é uma categoria visual separada do straight flush e não é contado duas vezes.
+
+## Limitações
+
+Monte Carlo produz estimativas; aumentar o número de iterações reduz a variação, mas não cria uma garantia. As mãos adversárias são tratadas como desconhecidas e igualmente distribuídas. O modelo não considera ranges reais, posição, rake, implied odds, apostas futuras ou decisões estratégicas.
+
+Outs indicam cartas que melhoram uma combinação, não cartas que necessariamente vencem. Pot odds é uma comparação matemática simplificada e não é uma recomendação automática de call.
+
+## Contribuindo
+
+1. Crie uma branch para a mudança.
+2. Mantenha o motor de poker independente da UI.
+3. Adicione testes para regras matemáticas novas.
+4. Execute `npm test -- --watch=false` e `npm run build`.
+5. Abra um pull request descrevendo a hipótese matemática e o impacto visual.
+
+## Licença
+
+MIT. Veja [LICENSE](./LICENSE).

@@ -1,12 +1,35 @@
 <!doctype html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
   <meta charset="utf-8">
-  <title>Rivermath</title>
+  <title>RiverMath | Calculadora de Probabilidades de Poker</title>
   <base href="/">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Calcule probabilidades, equidade e pot odds no Texas Hold'em. Simule mãos de poker gratuitamente e aprenda a matemática por trás de cada jogada.">
+  <meta name="theme-color" content="#183c2b">
+  <meta property="og:title" content="RiverMath | Calculadora de Probabilidades de Poker">
+  <meta property="og:description" content="Matemática por trás de cada mão.">
+  <meta property="og:type" content="website">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
-</head>
+
+    <script>
+      (function () {
+        const html = document.documentElement;
+
+        try {
+          const theme = localStorage.theme;
+          const prefersDark = window.matchMedia?.('(prefers-color-scheme: dark)').matches ?? false;
+
+          const isSystem = theme === 'system' || !('theme' in localStorage);
+          const isDark = theme === 'dark' || (isSystem && prefersDark);
+          html.classList.add('scheme-light-dark');
+          html.classList.toggle('dark', isDark);
+          html.setAttribute('data-theme', theme ?? 'system');
+        } catch (_) {}
+      })();
+    </script>
+
+  </head>
 <body>
   <app-root></app-root>
 </body>
