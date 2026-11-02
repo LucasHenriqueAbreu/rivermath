@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@a
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import {
   lucideCheck, lucideCircleHelp, lucideCode2, lucideInfo, lucideMoon,
-  lucidePlay, lucideRotateCcw, lucideShieldCheck, lucideSigma, lucideSun, lucideTrendingUp, lucideX,
+  lucidePlay, lucideRotateCcw, lucideShieldCheck, lucideSigma, lucideSun, lucideX,
 } from '@ng-icons/lucide';
 
 import { calculatePotOdds } from '@/core/poker/pot-odds/pot-odds';
@@ -34,7 +34,7 @@ type View = 'calculator' | 'learn' | 'about';
   templateUrl: './app.html',
   styleUrl: './app.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  viewProviders: [provideIcons({ lucideCheck, lucideCircleHelp, lucideCode2, lucideInfo, lucideMoon, lucidePlay, lucideRotateCcw, lucideShieldCheck, lucideSigma, lucideSun, lucideTrendingUp, lucideX })],
+  viewProviders: [provideIcons({ lucideCheck, lucideCircleHelp, lucideCode2, lucideInfo, lucideMoon, lucidePlay, lucideRotateCcw, lucideShieldCheck, lucideSigma, lucideSun, lucideX })],
 })
 export class App {
   protected readonly calculator = inject(CalculatorStateService);
