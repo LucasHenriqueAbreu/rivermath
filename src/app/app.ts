@@ -81,6 +81,7 @@ export class App {
   protected onPrecisionChange(value: string | string[]): void { if (value === 'quick' || value === 'standard' || value === 'precise') this.calculator.setPrecision(value); }
   protected formatPercent(value: number | null | undefined): string { return `${new Intl.NumberFormat('pt-BR', { maximumFractionDigits: 1, minimumFractionDigits: 1 }).format(value ?? 0)}%`; }
   protected formatCurrency(value: number): string { return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL', maximumFractionDigits: 2 }).format(value); }
+  protected potOddsFormula(): string { return `${this.formatCurrency(this.call())} ÷ (${this.formatCurrency(this.pot())} + ${this.formatCurrency(this.call())})`; }
   protected categoryBarClass(category: string): string { return `distribution-bar distribution-bar--${category}`; }
   protected card(rank: number, suit: Card['suit']): Card { return { id: `${rank}-${suit}`, rank: rank as Card['rank'], suit }; }
 }
